@@ -1,0 +1,41 @@
+$x: 30px;
+$y: 30px;
+$bordRad: 100px;
+$border: solid;
+$colorRing: black;
+$margRing: -20px;
+$margTop: -5px;
+$thicknessRings: 1px;
+$shadow: 0 0 2em black;
+
+.Rings{
+  display: flex;
+  justify-content: center;
+}
+
+@mixin RingsMixin ($x, $y, $bordRad, $border, $thicknessRings, $colorRing, $shadow, $margRing, $margTop) {
+    width : $x ;
+    height : $y ;   
+    border-radius: $bordRad;
+    border: $border;
+    border-width: $thicknessRings;
+    color: $colorRing;
+    box-shadow: $shadow;
+    margin-left: $margRing;
+    margin-top: $margTop;
+}
+
+@for $i from 1 through 6 {
+    .Rings#{$i} {
+  @include RingsMixin(30px + $i*10, 30px + $i*10, 50px, solid, 2px + $i, black, 0 0 2px+$i black, -10px - $i*2, -5px - $i*7);
+    }
+}
+
+.myMedRings{
+  @include RingsMixin(50px, 50px, 50px, solid, 5px,  rgb(211, 94, 26), 0 0 2px rgb(211, 94, 26), 0px, 0px);
+}
+
+.myBigRing{
+  @include RingsMixin(150px, 150px, 100px, solid, 10px, yellow, 0 0 4px yellow, 0px, 0px);
+}
+
